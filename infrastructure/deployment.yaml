@@ -1,10 +1,10 @@
 resources:
-- name: student-role
+- name: Student Role
   type: gcp-types/iam-v1:projects.roles
   properties:
     parent: projects/ca-labs
     role:
-      title: student-role
+      title: student_role
       description: Role for student's to complete the Lab
       stage: GA
       includedPermissions:
