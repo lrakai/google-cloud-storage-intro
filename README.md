@@ -2,7 +2,7 @@
 
 Intro Google Cloud Storage Lab
 
-# Following Along
+## Following Along
 
 ```sh
 gcloud deployment-manager deployments create lab --config infrastructure/deployment.yaml
