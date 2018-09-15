@@ -21,6 +21,16 @@ Intro Google Cloud Storage Lab
 
 1. Deploy the deployment manager config in the `infrastructure` directory:
 
-```sh
-gcloud deployment-manager deployments create lab --config infrastructure/deployment.yaml
-```
+    ```sh
+    gcloud deployment-manager deployments create lab --config infrastructure/deployment.yaml
+    ```
+
+1. Bind the Lab role to the student user or group
+
+    ```sh
+    gcloud projects add-iam-policy-binding [PROJECT_ID] \
+    --member [GROUP_OR_USER]  \
+    --role projects/[PROJECT_ID]/roles/studentrole
+    ```
+
+    An example of `[GROUP_OR_USER]` is `student@gmail.com`.
