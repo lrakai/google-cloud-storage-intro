@@ -9,6 +9,7 @@ resources:
       description: Role for student's to complete the Lab
       stage: GA
       includedPermissions:
+        - resourcemanager.projects.get
         - storage.buckets.create
         - storage.buckets.delete
         - storage.buckets.get
