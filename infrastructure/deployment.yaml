@@ -3,6 +3,7 @@ resources:
   type: gcp-types/iam-v1:projects.roles
   properties:
     parent: projects/ca-labs
+    roleId: student_role
     role:
       title: student_role
       description: Role for student's to complete the Lab
