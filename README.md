@@ -9,6 +9,16 @@ Intro Google Cloud Storage Lab
     - iam.googleapis.com
     - storage-component.googleapis.com
 
+1. [Ensure the default Google APIs service account (used by deployment manager) has permission to create roles](https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources):
+
+    ```sh
+    gcloud projects add-iam-policy-binding [PROJECT_ID] \
+    --member serviceAccount:[PROJECT_NUMBER]@cloudservices.gserviceaccount.com  \
+    --role roles/iam.roleAdmin
+    ```
+
+    You can use `gcloud list projects` to get the project ID and number.
+
 1. Deploy the deployment manager config in the `infrastructure` directory:
 
 ```sh
