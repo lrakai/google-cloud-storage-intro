@@ -1,6 +1,8 @@
 # google-cloud-storage-intro
 
-Intro Google Cloud Storage Lab
+Intro Google Cloud Storage Lab. Learn how to perform common tasks using `gsutil`.
+
+![Final Environment](https://user-images.githubusercontent.com/3911650/47577929-55a8f480-d905-11e8-8f46-461c25715ea4.png)
 
 ## Getting Started
 
