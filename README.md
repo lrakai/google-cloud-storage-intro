@@ -34,3 +34,58 @@ Intro Google Cloud Storage Lab
     ```
 
     An example of `[GROUP_OR_USER]` is `student@gmail.com`.
+    
+## Following Along
+
+1. Start a Google Cloud Shell session.
+1. Create a bucket (replace _[BUCKET_NAME]_ with the desired name):
+
+    ```sh
+    bucket_name=[BUCKET_NAME]
+    gsutil mb -c multi_regional -l US gs://$bucket_name
+    ```
+
+1. Upload the Cloud Shell README to the bucket:
+
+    ```sh
+    gsutil cp -s regional README-cloudshell.txt gs://$bucket_name/    
+    ```
+
+1. Perform a detailed listing of the bucket to confirm the storage class and other details:
+
+    ```sh
+    gsutil ls -L gs://$bucket_name/* | more
+    ```
+
+1. Enable versioning on the bucket:
+
+    ```sh
+    gsutil versioning set on gs://$bucket_name
+    ```
+
+1. Overwrite the README and observe the new __Generation__ number for the object:
+
+    ```sh
+    gsutil cp README-cloudshell.txt gs://$bucket_name/
+    gsutil ls -L gs://$bucket_name/* | more
+    ```
+
+1. List all available versions for the object:
+
+    ```sh
+    gsutil ls -a gs://$bucket_name/plan.txt
+    ```
+    Note the generation number is appended to identify different versions of the object.
+
+## Tearing Down
+
+When finished, remove the GCP resources with:
+
+```sh
+gsutil rm -r gs://$bucket_name
+gsutil rb gs://$bucket_name
+gcloud projects remove-iam-policy-binding [PROJECT_ID] \
+    --member [GROUP_OR_USER]  \
+    --role projects/[PROJECT_ID]/roles/studentrole
+gcloud deployment-manager deployments delete lab
+```
