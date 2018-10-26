@@ -29,13 +29,33 @@ Intro Google Cloud Storage Lab. Learn how to perform common tasks using `gsutil`
 
 1. Bind the Lab role to the student user or group
 
-    ```sh
-    gcloud projects add-iam-policy-binding [PROJECT_ID] \
-    --member [GROUP_OR_USER]  \
-    --role projects/[PROJECT_ID]/roles/studentrole
-    ```
+    - In macOS/Linux:
 
-    An example of `[GROUP_OR_USER]` is `student@gmail.com`.
+        ```sh
+        member="[GROUP_OR_USER]"
+        project_id=$(gcloud config list --format 'value(core.project)')
+        role=$(gcloud iam roles list --project $project_id \
+                                     --filter "name:projects/$project_id/roles/studentrole*" \
+                                     --format "value(name)")
+        gcloud projects add-iam-policy-binding $project_id \
+        --member $member  \
+        --role $role
+        ```
+
+    - In Windows (PowerShell):
+
+        ```ps1
+        $member = "[GROUP_OR_USER]"
+        $project_id = gcloud config list --format 'value(core.project)'
+        $role = gcloud iam roles list --project $project_id `
+                                      --filter "name:projects/$project_id/roles/studentrole*" `
+                                      --format "value(name)"
+        gcloud projects add-iam-policy-binding $project_id `
+        --member $member  `
+        --role $role
+        ```
+
+    An example of `[GROUP_OR_USER]` is `user:student@gmail.com`.
     
 ## Following Along
 
